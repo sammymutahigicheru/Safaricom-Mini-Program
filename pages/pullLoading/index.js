@@ -1,3 +1,4 @@
+let flag = false;
 Page({
   data: {
     list3: [
@@ -49,8 +50,15 @@ Page({
     ],
   },
   onItemClick(ev) {
-    my.alert({
-      content: ev.detail.index,
-    });
+    flag = true;
+    this.setData({
+      flag
+    })
   },
+  formSubmit: function(e) {
+    console.log('form has a submit event, carrying data ', e.detail.value)
+  },
+  formReset: function() {
+    console.log('form has a reset event')
+  }
 });
