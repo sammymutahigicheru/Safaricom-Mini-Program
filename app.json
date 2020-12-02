@@ -1,0 +1,8 @@
+{
+  "pages": [
+    "pages/pullLoading/index"
+  ],
+  "window": {
+    "defaultTitle": "pullLoading"
+  }
+}
