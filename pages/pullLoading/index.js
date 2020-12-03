@@ -1,64 +1,34 @@
 let flag = false;
+let list;
 Page({
   data: {
-    list3: [
-      {
-        icon: 'https://img.example.com/example1.png',
-        text: 'Title',
-        desc: 'text',
+    list3: [],
+  },
+  onShow(){
+    my.request({
+      url: 'http://order-service.1431640ff0d44794b030.westus.aksapp.io/v1/Product',
+      method: 'GET',
+      data: {
+        from: 'Paytm',
+        production: 'JSAPI',
       },
-      {
-        icon: 'https://img.example.com/example2.png',
-        text: 'Title',
-        desc: 'text',
+      dataType: 'json',
+      success: function(res) {
+        my.alert({content: 'success'});
       },
-      {
-        icon: 'https://img.example.com/example3.png',
-        text: 'Title',
-        desc: 'text',
+      fail: function(res) {
+        my.alert({content: 'fail'});
       },
-      {
-        icon: 'https://img.example.com/example4.png',
-        text: 'Title',
-        desc: 'text',
-      },
-      {
-        icon: 'https://img.example.com/example5.png',
-        text: 'Title',
-        desc: 'text',
-      },
-      {
-        icon: 'https://img.example.com/example6.png',
-        text: 'Title',
-        desc: 'text',
-      },
-      {
-        icon: 'https://img.example.com/example7.png',
-        text: 'Title',
-        desc: 'text',
-      },
-      {
-        icon: 'https://img.example.com/example8.png',
-        text: 'Title',
-        desc: 'text',
-      },
-      {
-        icon: 'https://img.example.com/example9.png',
-        text: 'Title',
-        desc: 'text',
-      },
-    ],
+      complete: function(res) {
+        my.hideLoading();
+        my.alert({content: 'complete'});
+      }
+    });
   },
   onItemClick(ev) {
-    flag = true;
-    this.setData({
-      flag
-    })
-  },
-  formSubmit: function(e) {
-    console.log('form has a submit event, carrying data ', e.detail.value)
-  },
-  formReset: function() {
-    console.log('form has a reset event')
+   list = this.data.list3
+   this.setData({
+     list3:list
+   })
   }
 });
