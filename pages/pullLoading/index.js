@@ -1,34 +1,75 @@
-let flag = false;
-let list;
+const mockData = [{
+  title: 'List 1',
+  remarksa: 'Note 1',
+  remarksb: 'Note 2'
+}, {
+  title: 'List 2',
+  remarksa: 'Note 1',
+  remarksb: 'Note 2'
+}, {
+  title: 'List 3',
+  remarksa: 'Note 1',
+  remarksb: 'Note 2'
+}, {
+  title: 'List 4',
+  remarksa: 'Note 1',
+  remarksb: 'Note 2'
+}, {
+  title: 'List 5',
+  remarksa: 'Note 1',
+  remarksb: 'Note 2'
+}, {
+  title: 'List 6',
+  remarksa: 'Note 1',
+  remarksb: 'Note 2'
+}];
+const mockTotal = 60;
 Page({
   data: {
-    list3: [],
+    show: false,
+    page: 1,
+    list: []
   },
-  onShow(){
-    my.request({
-      url: 'http://order-service.1431640ff0d44794b030.westus.aksapp.io/v1/Product',
-      method: 'GET',
-      data: {
-        from: 'Paytm',
-        production: 'JSAPI',
-      },
-      dataType: 'json',
-      success: function(res) {
-        my.alert({content: 'success'});
-      },
-      fail: function(res) {
-        my.alert({content: 'fail'});
-      },
-      complete: function(res) {
-        my.hideLoading();
-        my.alert({content: 'complete'});
-      }
-    });
+  onLoad() {
+    this.mySchedulde();
   },
-  onItemClick(ev) {
-   list = this.data.list3
-   this.setData({
-     list3:list
-   })
+  // /**
+  //  * @method scrollMytrip
+  //  */
+  // async scrollMytrip() {
+  //   try {
+  //     const { page, list, } = this.data;
+  //     if (list.length < mockTotal) {
+  //       this.setData({ show: true });
+  //       const newPage = page + 1;
+  //       this.mySchedulde(newPage);
+  //     }
+  //   } catch (e) {
+  //     this.setData({ show: false });
+  //     console.log('scrollMytrip Error:', e);
+  //   }
+  // },
+  /**
+   * @method mySchedulde
+   * @param {int} page 
+   */
+  async mySchedulde(page = 1) {
+    try {
+      let list = this.data.list;
+      setTimeout(() => {
+        let data = mockData;
+        for (let i = 0; i < data.length; i++) {
+          let newObj = { ...data[i], remarksa: `Page: ${page}` };
+          list.push(newObj);
+        }
+        this.setData({
+          list,
+          page,
+          show: false
+        });
+      }, 1000);
+    } catch (e) {
+      console.log('mySchedulde Error:', e);
+    }
   }
 });
