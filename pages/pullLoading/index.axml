@@ -1,3 +1,15 @@
+<view class="search-bar">
+      <search-bar
+        value="{{value}}"
+        placeholder="Search "
+        onInput="handleInput"
+        onClear="handleClear"
+        onFocus="handleFocus"
+        onBlur="handleBlur"
+        onCancel="handleCancel"
+        onSubmit="handleSubmit"
+        showCancelButton="{{false}}" />
+</view>
 <view class="schedule-container">
     <scroll-view scroll-y="{{true}}"  class="schedule-scroll">
         <view a:for="{{list}}" class="schedule-detail">
