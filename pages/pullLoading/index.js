@@ -33,9 +33,9 @@ Page({
   onLoad() {
     this.mySchedulde();
   },
-  // /**
-  //  * @method scrollMytrip
-  //  */
+  /**
+   * @method scrollMytrip
+   */
   // async scrollMytrip() {
   //   try {
   //     const { page, list, } = this.data;
