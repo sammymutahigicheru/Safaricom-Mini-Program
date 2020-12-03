@@ -2,7 +2,37 @@
 let list1;
 Page({
   data: {
-    list: []
+    list: [
+      {
+        Price:500,
+        ProductID:1,
+        ProductName:"Outright6KG"
+      }
+    ]
+  },
+  //search block
+  handleInput(Price) {
+        this.setData({
+          Price,
+        });
+      },
+      handleClear(Price) {
+        this.setData({
+          Price: '',
+        });
+      },
+      handleFocus() {},
+      handleBlur() {},
+      handleCancel() {
+        this.setData({
+          Price: '',
+        });
+      },
+      handleSubmit(Price) {
+        console.log(Price)
+        my.alert({
+          content: Price,
+        });
   },
   onLoad() {
     my.showLoading();
