@@ -1,9 +1,8 @@
 <view class="schedule-container">
     <scroll-view scroll-y="{{true}}"  class="schedule-scroll">
         <view a:for="{{list}}" class="schedule-detail">
-          <view class="schedule-place">{{item.title}}</view>
-          <view class="schedule-trainNumber padd font">{{item.remarksa}}</view>
-          <view class="schedule-time padd font">{{item.remarksb}}</view>
+          <view class="schedule-place">{{item.ProductName}}</view>
+          <view class="schedule-time padd font">{{item.Price}}</view>
         </view>
         <view class="spinner" style="{{show ? '' : 'display:none'}}">
           <view class="bounce1 bounce"></view>

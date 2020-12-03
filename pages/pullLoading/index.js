@@ -1,37 +1,35 @@
-const mockData = [{
-  title: 'List 1',
-  remarksa: 'Note 1',
-  remarksb: 'Note 2'
-}, {
-  title: 'List 2',
-  remarksa: 'Note 1',
-  remarksb: 'Note 2'
-}, {
-  title: 'List 3',
-  remarksa: 'Note 1',
-  remarksb: 'Note 2'
-}, {
-  title: 'List 4',
-  remarksa: 'Note 1',
-  remarksb: 'Note 2'
-}, {
-  title: 'List 5',
-  remarksa: 'Note 1',
-  remarksb: 'Note 2'
-}, {
-  title: 'List 6',
-  remarksa: 'Note 1',
-  remarksb: 'Note 2'
-}];
-const mockTotal = 60;
+
+let list1;
 Page({
   data: {
-    show: false,
-    page: 1,
     list: []
   },
   onLoad() {
+    my.showLoading();
     this.mySchedulde();
+  },
+  onShow(){
+    my.request({
+      url: 'http://order-service.1431640ff0d44794b030.westus.aksapp.io/v1/Product',
+      method: 'GET',
+      data: {
+        from: 'Paytm',
+        production: 'JSAPI',
+      },
+      dataType: 'json',
+      success: function(res) {
+       // my.alert({content: 'success'});
+       list1 = res.data;
+       console.log(list1);
+      },
+      fail: function(res) {
+       // my.alert({content: 'fail'});
+      },
+      complete: function(res) {
+        my.hideLoading();
+       // my.alert({content: 'complete'});
+      }
+    });
   },
   /**
    * @method scrollMytrip
@@ -53,19 +51,17 @@ Page({
    * @method mySchedulde
    * @param {int} page 
    */
-  async mySchedulde(page = 1) {
+  async mySchedulde() {
     try {
       let list = this.data.list;
       setTimeout(() => {
-        let data = mockData;
+        let data = list1;
         for (let i = 0; i < data.length; i++) {
-          let newObj = { ...data[i], remarksa: `Page: ${page}` };
+          let newObj = { ...data[i]};
           list.push(newObj);
         }
         this.setData({
-          list,
-          page,
-          show: false
+          list
         });
       }, 1000);
     } catch (e) {
